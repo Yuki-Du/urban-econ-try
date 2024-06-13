@@ -1,0 +1,1478 @@
+<!DOCTYPE html>
+<html lang="ch">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>《城市经济学》课程报告</title>
+    <link rel="stylesheet" href="BLOG.css"> <!-- 引入外部CSS文件 -->
+    <script src="js/echarts.min.js"></script>   
+    <script src="js/vintage.js"></script>   <!-- 引入echarts.js -->
+    <script src="js/purple-passion.js"></script>   <!-- 引入echarts.js -->
+    <!-- <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/map/js/world.js"></script>     -->
+    <script type="text/javascript" src="js/衡水.js"></script>
+    <script type="text/javascript" src="js/邢台.js"></script>
+
+</head>
+ 
+<body>
+    <div id="title_name">超级中学能否搭建超级城市？</div>
+    <div id="title_name2">———探究衡水教育发展对城市经济的拉动作用</div>
+    <div id="subtitle">信息管理系 杜咏曦</div>
+    <div id="subtitle">信息管理系 王雨辰</div>
+    <h1 style="text-align: center;">前言</h1>
+    <div class="front_text">
+        教育在国家发展过程中起着极为重要的作用，推进我国教育现代化、建设教育强国、办好人民满意的教育，具有重大现实意义和深远历史意义。随着教育经济学的快速发展，中国学者在改革开放之后对于教育经济学逐渐重视起来。人们逐渐认识到教育对于经济发展重要的载体功能，人们通过教育获得劳动能力和创造能力，教育的投入使得人们得以创造更高的价值，从而推动经济社会的发展。
+    </div>
+    <div class="front_text">在教育发展的过程中，人才、物质的基础等等为教育系统的发展提供了支持。
+        故而优质教育资源多集中在经济发达的一二线城市，教育与经济形成双向良性循环。然而，衡水作为河北省一座不起眼的小城市，却凭着“超级中学”现象异军突起，进入21世纪后创造着不败的教育神话，其经济发展水平与教育产出并不成完全正比。基于衡水的特殊现象，本文试图探究中学教育的发展是否能够促进城市的经济增长，超级中学名牌效应是否能带动衡水房地产业发展与城镇化率的提升。</div>
+    <h1 style="text-align: center;color:#919e8b;font-family: 楷体;">目录</h1>
+    <div class="table">
+    <nav>
+        <ul>
+          <li><a href="#section1">一、数据获取</a></li>
+          <li><a href="#section2">二、描述性统计</a></li>
+          <li><a href="#section3">三、计量分析</a></li>
+          <li><a href="#section4">四、总结</a></li>
+        </ul>
+      </nav>
+    </div>
+    <h1 id="section1">一、数据获取</h1>
+    <br>
+    <div class="front_text">本组从多方数据库获取了衡水与邢台国民经济指标相关数据，并进行数据预处理以便后续分析。</div>
+    <div class="content">
+        <ol>
+            <li>知网-统计数据库的衡水、邢台统计年鉴与中经网统计数据库中获取衡水市桃城区（市辖区）及各分县与邢台市的1999年至2019年的国民经济各类基本指标，并从中选取普通高中学生数量、学校数量、教职工数量、CPI指数、房地产投资量、GDP总量、GDP增速、城镇化率作为主要分析内容</li>
+            <li>百度迁徙获取2018-2023年9月各省迁入衡水与邢台人口的迁入意愿与实际迁入指数</li>
+            <li>衡水市教育局官网获取衡水普通高中招生政策变化情况</li>
+            <li>各类教育公众号及衡水一中历年喜报获取衡中清北人数</li>
+        </ol>
+    </div>
+    
+
+    <h1 id="section2">二、描述性统计</h1>
+    <h2>（一）GDP和房价变化：对比城市选取</h2>
+    <!-- <div class='fig' id='GDP变化' style='width: 1100px; height: 600px'></div> -->
+    <div class="container">
+        <div class='fig_son' id="GDP变化" style='width: 700px; height: 600px'></div>
+        <div class='fig_son' id="房价变化" style='width: 700px; height: 600px'></div>
+    </div>
+    <br>
+    <div class="front_text">根据GDP和房价水平，选取和衡水发展水平相似的邢台市作为对比城市。我们同时也考虑到了邢台市和衡水市在地理位置上相邻，在经济发展水平上相近，邢台市也没有更加突出的城市特色和特色产业，适合作为对比城市。</div>
+    <h2>（二）教育水平分析：衡水特殊的教育禀赋</h2>
+    <div class='fig' id='教育水平分析' style='width: 1100px; height: 600px'></div>
+    <br>
+    <div class="front_text">根据相关数据，从教育经费、在职教师数量、学校数量、在校生数量四个方面衡量衡水和邢台两个城市的教育特征，从雷达图上可以看出，两个城市的教育特征有所不同。衡水市投入更多的教育经费，同时也开设了更多的学校数量，同时衡水市在校生的数量较少，在校教师数量相对较少，并非印象中的“人海战术”，同时也反映出衡水市教师数量相对不足。</div>
+    <h2>（三）户籍人口增长变化：超级中学的名牌效应</h2>
+    <br>
+    <div class="container">
+        <div class='fig_son' id="衡水户籍人口增长率变化" style='width: 700px; height: 600px'></div>
+        <div class='fig_son' id="邢台户籍人口增长率变化" style='width: 700px; height: 600px'></div>
+    </div>
+    <br>
+    <br>
+    <div class="front_text">通过衡水市市区与周边区县历年来户籍人口增长率的对比，及邢台市各区县户籍人口增长率变化的对比，可以发现衡水市区会对周边区县的户籍人口有较大的吸引力，我们猜测超级中学的名牌效应会在其中发挥一定作用。</div>
+    <div class="content">
+        <ol>
+            <li>长期以来，与周围区县相比，衡水市市区（桃城区）的户籍人口增长率均处于稳步增长的独特地位，而周围区县则多为负增长。</li>
+            <li>2015年实施“三年户籍，三年学籍”政策以来，衡水市市区（桃城区）的户籍人口增长率有所减缓，周边曲线的户籍人口也逐渐从负增长转向正增长，但增长速度依然远远低于衡水市区。同对比城市——邢台市相比，衡水市市区依然保有户籍增长的优势，对周围区县的人口有一定的户籍吸引力。</li>
+        </ol>
+    </div>
+    <br>
+
+    <h2>（四）在校生数量增长变化：教育公平下的政策收紧</h2>
+    <br>
+    <div class="container">
+        <div class='fig_son' id="衡水在校生增长变化" style='width: 700px; height: 600px'></div>
+        <div class='fig_son' id="邢台在校生增长变化" style='width: 700px; height: 600px'></div>
+    </div>
+    <br>
+    <div class="content">
+        <ul>
+            <li>衡水市实施按照学籍和户籍进行划类别招生政策，对于不同的学籍和户籍的学生规定不同类别的录取学校；其中A类生录取学校的选择范围最广。随着市区的超级中学的不断发展，对周边区县学生的引力加大，为了更好地促进区域间教育公平，减少周边区县优秀生源流失的问题，衡水市市区的高中招生政策不断收紧。</li>
+            <li>2015年，衡水市桃城区出台“三年户籍，三年学籍”政策；2018年，衡水市桃城区出台更为严苛的”五年户籍，五年学籍“政策。</li>
+            <li>从衡水市市区及其他区县在校生数量增长率（当年在校生数量/上一年在校生数量-1）的对比上可以看出，2015年以来，衡水市市区的在校生数量增长率处于突出地位，和周边区县相比增长较快，虽然2015年由于缺少主城区的数据，我们无法衡量主城区的学生数量，但是其他区县的在校生数据显示，周边区县的学校经历若干年的招生寒冬，无法破冰；但在2018年，衡水市市区的在校生数量出现大幅负增长，周边区县的在校生数量实现小幅增长。而其对比城市邢台市的各个区县和各个年份之间却较为稳定。</li>
+            <li>由此可见，2015年政策的实施效果较好，2018年新出台的政策也有一定的约束能力，市区学生数量骤减但是各区县没有明显变化甚至有所增长，有效缓解了教育不公平效应。</li>
+        </ul>
+    </div>
+    <h1 id="section3">三、计量分析</h1>
+    <div class="front_text">本组基于罗默生产函数，选取教育经费投入、学校数量、学生人数、教职工人数、清北人数作为自变量；选取GDP总量、CPI指数、房地产投资、城镇化率为因变量探究中等教育对于衡水经济发展的作用；选取迁出省份教育水平为自变量，迁入衡水意愿与实际迁入结果为因变量，探究衡水中学对其他地区人员迁入的吸引力，选取人口自然增长率为部分假设的控制变量，并选取邢台市作为衡水市对照组，以探究在同等经济发展水平下超级中学是否真正对经济增长产生效果，对自变量、因变量、控制变量进行对数变换以使得趋势线性化。</div>
+    <h2>1.高中阶段教育的发展可以促进衡水市的经济增长。</h2>
+    <h3>模型建立</h3>
+    <div class="import">lnGDP=10.757+0.099*ln教育经费+0.375*ln学生数量+0.471*ln清北人数</div>
+    <div class="import">lnGDP=0.562**ln教育经费+0.467*ln教育经费×ln学校数量-0.327ln学校数量+14.249**</div>
+    <div class="import">lnGDP=14.528**+0.225**ln教育经费+1.201**ln教师数量-0.386**ln教育经费×ln教师数量</div>
+    <img src="./image/1新.png" alt="1.3" style="height: 15%; width:50% ;">
+    <br>
+    <h3>结果分析</h3>
+    <div class="front_text">通过回归分析，可得出衡水市教育经费投入增加会促进学生数量与清北人数的提升，最终促进GDP的提高，教职工人数与学校数量作为调节变量对GDP产生影响。这符合经济学中教育对经济的正向影响的逻辑。同时在模型中，清北人数的回归系数最高，说明衡水中学对尖子生的培养对于提升衡水市影响力有着较强的积极作用。</div>
+    <img src="./image/1.1.png" alt="1.1"style="height: 15%; width:50% ;">
+    <img src="./image/1.2.png" alt="1.2"style="height: 15%; width:50% ;">
+    <img src="./image/1.3.png" alt="1.3"style="height: 15%; width:50% ;">
+
+    <h2>2.学生数量、教职工数量、清北人数会促进房地产行业提升</h2>
+    <h3>模型建立</h3>
+    <div class="import">房地产投资=-56.185 + 69.780*ln学生数量</div>
+    <div class="import">房地产投资=-502.382 + 68.219*ln教师数量</div>
+    <div class="import">ln房地产投资=-0.612 + 0.991*ln清北人数</div>
+    <br>
+    <h3>结果分析</h3>
+    <div class="front_text">根据回归分析可得，学生数量、教职工数量与清北人数对房地产行业投资有着正向影响关系，学生与教师数量的增多会带动学区房的住房需求，而清北人数的增多也会使得学区房的未来期望不断提高。同时学生数量、教师数量与房地产投资呈对数关系，边际效用递减；而清北人数与房地产投资整体呈现线性关系，说明衡水超级中学的神话持续推动着房地产业的发展。遗憾的是难以找到桃城区学区房具体数据，故未对学区房位置、租金等做进一步具体分析。</div>
+    <h3>学生数量</h3>
+    <img src="./image/2.1.png" alt="1.2">
+    <img src="./image/stunumber和housemoney散点图.png" alt="1.2" style="height: 15%; width:50% ;">
+    <h3>教师数量</h3>
+    <img src="./image/2.2.png" alt="1.2">
+    <img src="./image/teanumber和housemoney散点图.png" alt="1.2" style="height: 15%; width:50% ;">
+    <h3>清北人数</h3>
+    <img src="./image/2.3.png" alt="1.2">
+    <img src="./image/pkuandthu和housemoney散点图.png" alt="1.2" style="height: 15%; width:50% ;">
+    
+    <h2>3.学生数量、教职工数量、清北人数会促进CPI提高</h2>
+    <h3>控制变量：GDP增速</h3>
+    <h3>模型建立</h3>
+    <div class="import">CPI指数=-112.304 + 174.366*ln学生数量-31.204*lnGDP增速</div>
+    <div class="import">CPI指数=-1283.451-11.880*lnGDP增速+ 172.471*ln学校数量</div>
+    <div class="import">lnCPI指数=10.758-0.339*lnGDP增速 + 0.884*ln清北人数</div>
+    <h3>结果分析</h3>
+    <div class="front_text">通过回归分析可知，在以gdp增速为控制变量的前提下，学校数量、学生数量与清北人数对CPI有着促进作用，会带动消费零售业的发展；与房地产投资类似，学生、学校数量对CPI的影响同样存在边际递减效应。</div>
+    
+    <h3>学生数量</h3>
+    <img src="./image/3.1.png" alt="1.2">
+    <img src="./image/stunumber和consumption散点图.png" alt="1.2" style="height: 15%; width:50% ;">
+    <h3>教师数量</h3>
+    <img src="./image/3.2.png" alt="1.2">
+    <img src="./image/teanumber和consumption散点图.png" alt="1.2" style="height: 15%; width:50% ;">
+    <h3>清北人数</h3>
+    <img src="./image/pkuandthu和consumption散点图.png" alt="1.2" style="height: 15%; width:50% ;">
+    <h2>4.清北人数会提升城镇化率</h2>
+    <h3>控制变量：人口自然增长率</h3>
+    <h3>模型建立</h3>
+    <div class="import">ln城镇化率=3.679 + 0.139*ln清北人数 + 0.012*ln人口自然增长率</div>
+    <h3>结果分析</h3>
+    <div class="front_text">在控制自然增长率的前提下，通过回归分析，可以发现清北人数对衡水市桃城区城镇化率有着明显的促进效用，说明衡水中学极高的升学率一方面吸引了周边县城农村的人前往衡水高中就读，另一方面也吸引了其他省份慕名而来的高中学子，对提升市区城镇化率有着积极影响。</div>
+    <img src="./image/4.png" alt="1.2">
+    <img src="./image/pkuandthu和city散点图.png" alt="1.2" style="height: 15%; width:50% ;">
+    <h2>5.迁入地教育水平与衡水的迁入指数相关</h2>
+    <div class="front_text">依据18-23年9月各省迁入衡水的数据，本组按照教育水平为各省市进行赋分，教育水平越高分数越低，教育水平越低分数越高。随后对外省迁入地教育水平与迁入衡水的意愿进行相关分析。分析发现外省教育水平与迁入衡水的意愿无显著相关关系，但与最终迁入结果呈现正相关，即教育水平越低，迁入衡水的人数越多。这反映出衡水在教育方面对人口迁入有着极强的拉力。</div>
+    <div class="front_text">迁入衡水意愿和迁入省教育水平之间的相关系数值为0.005，接近于0，并且p值为0.344>0.05，因而说明迁入衡水意愿和迁入省教育水平之间并没有相关关系。</div>
+    <div class="front_text">实际迁入指数和迁入省教育水平之间的相关系数值为0.015，并且呈现出0.01水平的显著性，因而说明实际迁入指数和迁入省教育水平之间有着显著的正相关关系。</div>
+    <img src="./image/5.png" alt="1.2">
+    <h2>衡水VS邢台</h2>
+    <div class="front_text">在对衡水情况进行整体分析后，本组使用分组回归模型，对衡水和邢台进行了对比分析。回归结果显示，衡水与邢台的中学教育水平差异使得其对GDP、房地产投资、CPI、城镇化率、人口迁入指数产生差异，反映出衡水超级中学在经济发展过程中所扮演的特殊角色。</div>
+
+    <h2>6.衡水与邢台的教育水平对GDP产生不同影响</h2>
+    <img src="./image/6.png" alt="1.2">
+    <div class="front_text">从上表可知，邹志庄检验结果为F(5，30)=7.795，p=0.000<0.05，意味着city会对模型带来结构性变化。</div>
+
+    <h2>7.衡水与邢台的教育水平对CPI产生不同影响</h2>
+    <img src="./image/7.png" alt="1.2">
+
+    <div class="front_text">从上表可知，邹志庄检验结果为F(5，28)=7.192，p=0.000<0.05，意味着city会对模型带来结构性变化。</div>
+
+    <h2>8.衡水与邢台的教育水平对房价水平产生不同影响</h2>
+    <img src="./image/8.png" alt="1.2">
+
+    <div class="front_text">从上表可知，邹志庄检验结果为F(5，27)=4.235，p=0.006<0.05，意味着city会对模型带来结构性变化。</div>
+
+    <h2>9.衡水与邢台的教育水平对城镇化率产生不同影响</h2>
+    <img src="./image/9.png" alt="1.2">
+
+    <div class="front_text">从上表可知，邹志庄检验结果为F(5，10)=5.508，p=0.011<0.05，意味着city会对模型带来结构性变化。</div>
+
+    <h2>10.衡水与邢台的教育水平对人口迁入指数的影响</h2>
+    <img src="./image/10.png" alt="1.2">
+
+    <div class="front_text">从上表可知，邹志庄检验结果为F(2，38203)=3.433，p=0.032<0.05，意味着city会对模型带来结构性变化。</div>
+    <h1 id="section4">四、总结</h1>
+    <div class="front_text">综合分析可知，衡水桃城区全国顶尖的高中教育影响衡水市房地产投资与物价水平，最终作用于GDP增长，并使得衡水的产业结构与同等经济发展水平下的其他地区有着明显区别。在未来，衡水地区可以继续利用“超级中学”名片拉动GDP增长，但同时需要注意其影响的边际递减效应，若不能实现更高教育水平的人才培养与人才引进，超级高中对经济增长的效应始终有着其最高上限。唯有深化产业结构改革，留住人才，衡水才能在未来实现更高水平的经济发展。</div>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <script>
+        var myChart1 = echarts.init(document.getElementById('衡水户籍人口增长率变化'),'vintage');
+        option1 = {
+            baseOption: {
+                timeline: {
+                    //loop: false,        
+                    axisType: 'category',
+                    show: true,
+                    autoPlay: true,
+                    playInterval: 1500,
+                    data: ['2016年', '2017年',  '2018年', '2019年']
+                },
+                title: {
+                    text: '衡水市户籍人口增长率变化',
+                    // subtext: '2016年',
+                    x: 'center'
+                },
+                grid: { containLabel: true },
+                dataRange: {
+                    min: -8,
+                    max: 8,
+                    x: 'left',
+                    y: 'bottom',
+                    text: ['高', '低'], // 文本，默认为数值文本
+                    calculable: true,
+                    // color: ['#C40C0C','#C92416','#CB3D20','#CD552A','#CF6D34','#e6b600','#6F79C1','#6F79C1','#546EBB','#546EBB','#3963B5','#1E69B0','#005eaa']
+                    // color: ['#C40C0C','#C92416','#CB3D20','#CD552A','#CF6D34','#e6b600','#A590CC','#8A84C6','#6F79C1','#546EBB','#3963B5','#1E69B0','#005eaa'],
+                    // color: [ ,,,,',,],
+                    color: [ '#893448','#bf444c','#d87c7c','#eb8146','#B3E5FC','#03A9F4','#0288D1','#303F9F']
+
+                },
+                toolbox: {
+                    show: true,
+                    orient: 'vertical',
+                    x: 'right',
+                    y: 'center',
+                    feature: {
+                        mark: { show: true },
+                        dataView: { show: true, readOnly: false },
+                        restore: { show: true },
+                        saveAsImage: { show: true }
+                    }
+                },
+                roamController: {
+                    show: true,
+                    x: 'right',
+                    mapTypeControl: {
+                        'yueyang': true
+                    }
+                },
+                series: [
+                    {
+                    name: '地市名称',
+                    type: 'map',
+                    mapType: '衡水', /* // 自定义扩展图表类型 */
+                    roam: false,
+                    label: {
+                        normal: {
+                            show: true,
+                        },
+                        emphasis: {
+                            show: true,
+                        }
+                    },
+                    itemStyle: {
+                        normal: {
+                            borderWidth: 0.2, /* //区域边框宽度 */
+                            borderColor: '#009fe8', /* //区域边框颜色 */
+                            areaColor: "#ffefd5"
+                        },
+                        emphasis: {
+                            areaColor: '#FFFFFF',
+                        }
+                    },
+                    showLegendSymbol: true,
+                    },
+                ],
+                tooltip: {
+                    trigger: 'item'
+                }
+            },
+                options:[
+                //第一组    
+                {
+                    series: [{
+                        title: {
+                    subtext: '2016年',
+                    x: 'center'
+                },
+                data: [
+    { "name": "桃城区", "value": 7.46 },
+    { "name": "冀州区", "value": -5.48 },
+    { "name": "枣强县", "value": -0.36 },
+    { "name": "武邑县", "value": 0.20 },
+    { "name": "武强县", "value": -0.52 },
+    { "name": "饶阳县", "value": 0.36 },
+    { "name": "安平县", "value": 0.39 },
+    { "name": "故城县", "value": 0.22 },
+    { "name": "景县", "value": 0.25 },
+    { "name": "阜城县", "value": 0.23 },
+    { "name": "深州市", "value": 0.15 }
+]
+
+
+,
+            }]
+
+            },
+            //第2组    
+            {
+                    series: [{
+                        title: {
+                    subtext: '2017年',
+                    x: 'center'
+                },
+                data:[
+    { "name": "桃城区", "value": 3.49 },
+    { "name": "冀州区", "value": -0.83 },
+    { "name": "枣强县", "value": -0.49 },
+    { "name": "武邑县", "value": -1.42 },
+    { "name": "武强县", "value": -0.63 },
+    { "name": "饶阳县", "value": -0.65 },
+    { "name": "安平县", "value": -0.43 },
+    { "name": "故城县", "value": -0.72 },
+    { "name": "景县", "value": -1.22 },
+    { "name": "阜城县", "value": -0.38 },
+    { "name": "深州市", "value": -1.25 }
+]
+
+
+            ,
+            }]
+
+            },//第3组    
+                {
+                    series: [{
+                        title: {
+                    subtext: '2018年',
+                    x: 'center'
+                },
+                data: [
+    { "name": "桃城区", "value": 4.15 },
+    { "name": "冀州区", "value": -0.04 },
+    { "name": "枣强县", "value": -0.07 },
+    { "name": "武邑县", "value": -0.16 },
+    { "name": "武强县", "value": -0.32 },
+    { "name": "饶阳县", "value": -0.10 },
+    { "name": "安平县", "value": 0.22 },
+    { "name": "故城县", "value": -0.23 },
+    { "name": "景县", "value": -0.20 },
+    { "name": "阜城县", "value": -0.31 },
+    { "name": "深州市", "value": -0.29 }
+]
+
+
+,
+            }]
+
+            },//第4组    
+                {
+                    series: [{
+                        title: {
+                    subtext: '2019年',
+                    x: 'center'
+                },
+                data: [
+    { "name": "桃城区", "value": 4.58 },
+    { "name": "冀州区", "value": 0.14 },
+    { "name": "枣强县", "value": -0.08 },
+    { "name": "武邑县", "value": -0.31 },
+    { "name": "武强县", "value": -0.50 },
+    { "name": "饶阳县", "value": -0.50 },
+    { "name": "安平县", "value": 0.09 },
+    { "name": "故城县", "value": 0.03 },
+    { "name": "景县", "value": -0.23 },
+    { "name": "阜城县", "value": -0.12 },
+    { "name": "深州市", "value": -0.46 }
+]
+
+
+,
+            }]
+
+            }
+            ]
+            },
+        
+        myChart1.setOption(option1);
+        
+        var myChart2 = echarts.init(document.getElementById('邢台户籍人口增长率变化'),'vintage');
+        option2 = {
+            baseOption: {
+                timeline: {
+                    //loop: false,        
+                    axisType: 'category',
+                    show: true,
+                    autoPlay: true,
+                    playInterval: 1500,
+                    data: ['2016年', '2017年',  '2018年', '2019年']
+                },
+                title: {
+                    text: '邢台市户籍人口增长率变化',
+                    // subtext: '2016年',
+                    x: 'center'
+                },
+                grid: { containLabel: true },
+                dataRange: {
+                    min: -8,
+                    max: 8,
+                    x: 'right',
+                    y: 'bottom',
+                    text: ['高', '低'], // 文本，默认为数值文本
+                    calculable: true,
+                    color: [ '#893448','#bf444c','#d87c7c','#eb8146','#B3E5FC','#03A9F4','#0288D1','#303F9F']
+
+                    // color: ['#C40C0C','#C92416','#CB3D20','#CD552A','#CF6D34','#e6b600','#A590CC','#8A84C6','#6F79C1','#546EBB','#3963B5','#1E69B0','#005eaa']
+                    // color: ['#C40C0C','#C92416','#CB3D20','#CD552A','#CF6D34','#e6b600','#6F79C1','#546EBB','#3963B5','#1E69B0','#005eaa']
+                },
+                toolbox: {
+                    show: true,
+                    orient: 'vertical',
+                    x: 'right',
+                    y: 'center',
+                    feature: {
+                        mark: { show: true },
+                        dataView: { show: true, readOnly: false },
+                        restore: { show: true },
+                        saveAsImage: { show: true }
+                    }
+                },
+                roamController: {
+                    show: true,
+                    x: 'right',
+                    mapTypeControl: {
+                        'yueyang': true
+                    }
+                },
+                series: [
+                    {
+                    name: '地市名称',
+                    type: 'map',
+                    mapType: '邢台', /* // 自定义扩展图表类型 */
+                    roam: false,
+                    label: {
+                        normal: {
+                            show: true,
+                        },
+                        emphasis: {
+                            show: true,
+                        }
+                    },
+                    itemStyle: {
+                        normal: {
+                            borderWidth: 0.2, /* //区域边框宽度 */
+                            borderColor: '#009fe8', /* //区域边框颜色 */
+                            areaColor: "#ffefd5"
+                        },
+                        emphasis: {
+                            areaColor: '#FFFFFF',
+                        }
+                    },
+                    showLegendSymbol: true,
+                    },
+                ],
+                tooltip: {
+                    trigger: 'item'
+                }
+            },
+                options:[
+                //第一组    
+                {
+                    series: [{
+                        title: {
+                    text: '户籍人口增长率变化',
+                    subtext: '2016年',
+                    x: 'center'
+                },
+                data: [
+    { "name": "沙河市", "value": 0.69 },
+    { "name": "南宫市", "value": 0.84 },
+    { "name": "临西县", "value": -0.38 },
+    { "name": "清河县", "value": 1.90 },
+    { "name": "巨鹿县", "value": 1.36 },
+    { "name": "宁晋县", "value": 1.14 },
+    { "name": "隆尧县", "value": 1.20 },
+    { "name": "柏乡县", "value": 0.62 },
+    { "name": "内丘县", "value": 0.91 },
+    { "name": "临城县", "value": 0.68 },
+    { "name": "邢台县", "value": 1.00 },
+    { "name": "南和区", "value": 1.33 },
+    { "name": "任泽区", "value": 1.31 },
+    { "name": "信都区", "value": 1.26 },
+    { "name": "襄都区", "value": 0.81 },
+    { "name": "新河县", "value": 0.63 },
+    { "name": "广宗县", "value": 1.28 },
+    { "name": "平乡县", "value": 1.30 },
+    { "name": "威县", "value": 0.96 }
+]
+
+
+
+,
+            }]
+
+            },
+            //第2组    
+            {
+                    series: [{
+                        title: {
+                    text: '户籍人口增长率变化',
+                    subtext: '2017年',
+                    x: 'center'
+                },
+                data:[
+    { "name": "沙河市", "value": 0.99 },
+    { "name": "南宫市", "value": -0.45 },
+    { "name": "临西县", "value": 0.37 },
+    { "name": "清河县", "value": 0.74 },
+    { "name": "巨鹿县", "value": 0.18 },
+    { "name": "宁晋县", "value": 0.06 },
+    { "name": "隆尧县", "value": 0.30 },
+    { "name": "柏乡县", "value": -0.32 },
+    { "name": "内丘县", "value": -0.01 },
+    { "name": "临城县", "value": -0.75 },
+    { "name": "邢台县", "value": -0.15 },
+    { "name": "南和区", "value": 1.00 },
+    { "name": "任泽区", "value": 0.45 },
+    { "name": "信都区", "value": 0.54 },
+    { "name": "襄都区", "value": 0.38 },
+    { "name": "新河县", "value": -1.65 },
+    { "name": "广宗县", "value": 0.18 },
+    { "name": "平乡县", "value": 0.44 },
+    { "name": "威县", "value": -0.09 }
+]
+
+
+
+            ,
+            }]
+
+            },//第3组    
+                {
+                    series: [{
+                        title: {
+                    text: '户籍人口增长率变化',
+                    subtext: '2018年',
+                    x: 'center'
+                },
+                data: [
+    { "name": "沙河市", "value": 1.07 },
+    { "name": "南宫市", "value": 0.50 },
+    { "name": "临西县", "value": 0.41 },
+    { "name": "清河县", "value": 1.06 },
+    { "name": "巨鹿县", "value": 0.76 },
+    { "name": "宁晋县", "value": 0.78 },
+    { "name": "隆尧县", "value": 1.11 },
+    { "name": "柏乡县", "value": 0.49 },
+    { "name": "内丘县", "value": 0.59 },
+    { "name": "临城县", "value": 0.53 },
+    { "name": "邢台县", "value": 1.01 },
+    { "name": "南和区", "value": 1.25 },
+    { "name": "任泽区", "value": 0.96 },
+    { "name": "信都区", "value": 1.40 },
+    { "name": "襄都区", "value": 1.04 },
+    { "name": "新河县", "value": 0.33 },
+    { "name": "广宗县", "value": 0.58 },
+    { "name": "平乡县", "value": 1.18 },
+    { "name": "威县", "value": 0.56 }
+]
+
+
+
+,
+            }]
+
+            },//第4组    
+                {
+                    series: [{
+                        title: {
+                    text: '户籍人口增长率变化',
+                    subtext: '2019年',
+                    x: 'center'
+                },
+                data: [
+    { "name": "沙河市", "value": 0.69 },
+    { "name": "南宫市", "value": 0.36 },
+    { "name": "临西县", "value": 0.23 },
+    { "name": "清河县", "value": 0.80 },
+    { "name": "巨鹿县", "value": 0.63 },
+    { "name": "宁晋县", "value": 0.50 },
+    { "name": "隆尧县", "value": 0.72 },
+    { "name": "柏乡县", "value": 0.37 },
+    { "name": "内丘县", "value": 0.40 },
+    { "name": "临城县", "value": 0.24 },
+    { "name": "邢台县", "value": 0.47 },
+    { "name": "南和区", "value": 0.80 },
+    { "name": "任泽区", "value": 0.74 },
+    { "name": "信都区", "value": 0.90 },
+    { "name": "襄都区", "value": 1.24 },
+    { "name": "新河县", "value": 0.23 },
+    { "name": "广宗县", "value": 0.48 },
+    { "name": "平乡县", "value": 0.80 },
+    { "name": "威县", "value": 0.29 }
+]
+
+
+
+,
+            }]
+
+            }
+            ]
+            },
+        myChart2.setOption(option2);
+
+        // 初始化 ECharts 实例
+        var myChart3 = echarts.init(document.getElementById('GDP变化'),'vintage');
+        // 指定图表的配置项和数据
+        var option3 = {
+            title: {
+                text: 'GDP变化',
+                x: 'center',
+                top:0
+            },
+            grid: {
+                top:"20%",
+                // left: '3%',
+                // right: '4%',
+                // bottom: '3%',
+                containLabel: true
+            },
+            legend: {top:30},
+            tooltip: {
+                trigger: 'axis',
+                axisPointer: {
+                // Use axis to trigger tooltip
+                type: 'shadow' // 'shadow' as default; can also be 'line' or 'shadow'
+                }
+            },
+            xAxis: {
+                type: 'category',
+                data: [2015,2016,2017,2018,2019,2020]
+            },
+            yAxis: [
+                // {
+                //     type: 'value',
+                //     name: '房价(元/平方)'
+                // },
+                {
+                    type: 'value',
+                    name: 'GDP(万元)'
+                }]
+            ,
+            series: [
+                // {
+            //     name: '衡水市桃城区房价',
+            //     type: 'line',
+            //     stack: 'total',
+            //     yAxisIndex: 0, // 使用第一个纵坐标轴
+            //     data: [4787,4857,7325,8205,8267,7939]
+            // },{
+            //     name: '邢台市邢台县房价',
+            //     type: 'line',
+            //     yAxisIndex: 0, // 使用第一个纵坐标轴
+            //     data: [4683,3596,6508,6853,7479,7557]
+            // },
+            {
+                name: '衡水市GDP',
+                type: 'line',
+                stack: 'total',
+                // yAxisIndex: 1, // 使用第一个纵坐标轴
+                lineStyle: {
+                    width: 5 
+                        // type: 'dashed' // 将折线类型设置为虚线
+                    },
+                // label: {
+                //     show: true,     // 显示标签
+                //     position: 'end', // 标签位置为折线末端
+                //     formatter: '{a}', // 标签内容为折线的名称
+                // },
+                data: [2847740,3998117,5534965,5655215,5140000,5290000]
+            },{
+                name: '邢台市GDP',
+                type: 'line',
+                lineStyle: {
+                    width: 5 
+                        // type: 'dashed' // 将折线类型设置为虚线
+                    },
+                // yAxisIndex: 1, // 使用第一个纵坐标轴
+                data: [2809714,3143341,3706907,3768126,3800000,6880000]
+            },{
+                name: '石家庄市GDP',
+                type: 'line',
+                lineStyle: {
+                        opacity: 0.3,
+                        // color:'#919e8b',
+                        type: 'dashed' // 将折线类型设置为虚线
+                    },
+                // yAxisIndex: 1, // 使用第一个纵坐标轴
+                data: [29098110,32148250,33962728,33547563,3569148,35810000]
+            },{
+                name: '唐山市GDP',
+                type: 'line',
+                lineStyle: {
+                    opacity: 0.3,
+                        // color:'#919e8b',
+                        type: 'dashed' // 将折线类型设置为虚线
+                    },
+                // yAxisIndex: 1, // 使用第一个纵坐标轴
+                data: [31653208 ,	33238336 	,32053543 	,35006953 ,	35530000 ,	40680000 ]
+            },{
+                name: '秦皇岛市GDP',
+                type: 'line',
+                lineStyle: {opacity: 0.3,
+                        // color:'#919e8b',
+                        type: 'dashed' // 将折线类型设置为虚线
+                    },
+                // yAxisIndex: 1, // 使用第一个纵坐标轴
+                data: [8546085 ,	9340031 	,10146857 	,10875854 	,7730000 	,11370000  ]
+            },{
+                name: '邯郸市GDP',
+                type: 'line',
+                lineStyle: {opacity: 0.3,
+                        // color:'#919e8b',
+                        type: 'dashed' // 将折线类型设置为虚线
+                    },
+                // yAxisIndex: 1, // 使用第一个纵坐标轴
+                data: [8077260 ,	13663695 ,	13518281 	,14053640 ,	14350000 ,	15050000 ]
+            },{
+                name: '保定市GDP',
+                type: 'line',
+                lineStyle: {opacity: 0.3,
+                        // color:'#919e8b',
+                        type: 'dashed' // 将折线类型设置为虚线
+                    },
+                // yAxisIndex: 1, // 使用第一个纵坐标轴
+                data: [10144200 ,	11416800 	,13573500 ,	13388000 	,14903100 ,	15210000 ]
+            },{
+                name: '张家口市GDP',
+                type: 'line',
+                lineStyle: {opacity: 0.3,
+                        // color:'#919e8b',
+                        type: 'dashed' // 将折线类型设置为虚线
+                    },
+                // yAxisIndex: 1, // 使用第一个纵坐标轴
+                data: [5345487, 	6652782 ,	7093733 ,	7354610 ,	7600000 ,	7800000  ]
+            },{
+                name: '承德市GDP',
+                type: 'line',
+                lineStyle: {opacity: 0.3,
+                        // color:'#919e8b',
+                        type: 'dashed' // 将折线类型设置为虚线
+                    },
+                // yAxisIndex: 1, // 使用第一个纵坐标轴
+                data: [2830610 ,	3051752 	,4045897 ,	3705943 ,	3830000 	,3960000 ]
+            },{
+                name: '沧州市GDP',
+                type: 'line',
+                lineStyle: {opacity: 0.3,
+                        // color:'#919e8b',
+                        type: 'dashed' // 将折线类型设置为虚线
+                    },
+                // yAxisIndex: 1, // 使用第一个纵坐标轴
+                data: [6503098 ,	7104329 	,8667928 	,9687831 ,	9850000 	,9780000 ]
+            },{
+                name: '廊坊市GDP',
+                type: 'line',
+                lineStyle: {opacity: 0.3,
+                        // color:'#919e8b',
+                        type: 'dashed' // 将折线类型设置为虚线
+                    },
+                // yAxisIndex: 1, // 使用第一个纵坐标轴
+                data: [7892526 ,	9031261 ,	8648469 ,	11096938 ,	7270000 ,	10180000  ]
+            }
+        ]
+        };
+        // 使用刚指定的配置项和数据显示图表
+        myChart3.setOption(option3);
+        var myChart4 = echarts.init(document.getElementById('教育水平分析'),'vintage');  
+        // 这里你需要定义dataBJ, dataSH, dataGZ这三个变量，它们应该包含对应城市的数据  
+        var dataHS = [  
+                [7373, 5, 56, 2778, 1],  
+                [8462, 5.55, 58, 2853, 2],  
+                [9396, 5.87, 53, 3232, 3],  
+                [11397, 6.23, 64, 3287, 4],  
+                [12956, 6.86, 52, 3567, 5],  
+                [15340, 7.39, 50, 3750, 6],  
+                [19142, 7.79, 62, 3958, 7],  
+                [18939, 7.73, 58, 4325, 8],  
+                [33383, 5.2, 55, 3927, 9],  
+                [50090, 6.79, 52, 4480, 10],  
+                [58333, 6.33, 47, 4141, 11],  
+                [69112, 6.06, 47, 4479, 12],  
+                [109546, 6.56, 49, 4750, 13],  
+                [145951, 6.73, 41, 4665, 14],  
+                [132920, 6.82, 38, 4607, 15],  
+                [40101, 7.45, 42, 4834, 16],  
+                [54943, 7.41, 44, 4872, 17],  
+                [129340, 7.4, 41, 4911, 18],  
+                [201304, 7.45, 43, 5111, 19],  
+                [268205, 8, 46, 5872, 20],  
+                [320193, 8.19, 43, 6106, 21],  
+                [479244, 14, 81, 10230, 22],  
+                [406421, 14, 78, 10490, 23],  
+                [449047, 15, 77, 11156, 24]  
+            ];  
+        var dataXT =[  
+    [6882, 3, 32, 2004, 1],  
+    [7515, 3.11, 31, 2191, 2],  
+    [null, 3.4, 32, 2274, 3], // 假设缺失的值为 null  
+    [10696, 3.72, 33, 2465, 4],  
+    [11373, 4.02, 31, 2594, 5],  
+    [12867, 4.01, 27, 2614, 6],  
+    [15235, 4.11, 24, 2709, 7],  
+    [16362, 4.06, 23, 2827, 8],  
+    [21741, 4.09, 22, 2824, 9],  
+    [32301, 4.2, 21, 2959, 10],  
+    [42851, 4.31, 21, 3005, 11],  
+    [55456, 4.23, 20, 3279, 12],  
+    [78984, 4.64, 21, 3156, 13],  
+    [87738, 5, 22, 3440, 14],  
+    [79390, 5.42, 21, 3536, 15],  
+    [37737, 5.95, 24, 4553, 16],  
+    [106478, 6.41, 27, 4915, 17],  
+    [170851, 10.94, 46, 8349, 18],  
+    [193465, 13.49, 49, 9342, 19],  
+    [209071, 15, 52, 10953, 20],  
+    [255615, 15.93, 54, 11887, 21],  
+    [247206, 16, 56, 12608, 22],  
+    [232426, 17, 55, 13338, 23],  
+    [266906, 17, 59, 12976, 24]  
+]; 
+        var lineStyle = {
+            width: 1,
+            opacity: 0.5
+            };
+        // 你提供的配置对象  
+        var option4 = {
+                // backgroundColor: '#161627',
+                title: {
+                    text: '教育水平分析',
+                    left: 'center',
+                },
+                legend: {
+                    bottom: 5,
+                    data: ['衡水市', '邢台市'],
+                    itemGap: 20,
+                    textStyle: {
+                    fontSize: 14
+                    },
+                    selectedMode: 'single'
+                },
+                radar: {
+                    indicator: [
+                    { name: '教育经费', max: 500000 },
+                    { name: '在校生数量', max: 20 },
+                    { name: '学校数量', max: 80 },
+                    { name: '在职教师数量', max: 14000 },
+                    ],
+                    shape: 'circle',
+                    splitNumber: 5,
+                    axisName: {
+                    color: '"#b093a2"'
+                    },
+                    splitLine: {
+                    lineStyle: {
+                        color: [
+                        'rgba(238, 197, 102, 0.1)',
+                        'rgba(238, 197, 102, 0.2)',
+                        'rgba(238, 197, 102, 0.4)',
+                        'rgba(238, 197, 102, 0.6)',
+                        'rgba(238, 197, 102, 0.8)',
+                        'rgba(238, 197, 102, 1)'
+                        ].reverse()
+                    }
+                    },
+                    splitArea: {
+                    show: false
+                    },
+                    axisLine: {
+                    lineStyle: {
+                        color: 'rgba(238, 197, 102, 0.5)'
+                    }
+                    }
+                },
+                series: [
+                    {
+                    name: '衡水市',
+                    type: 'radar',
+                    lineStyle: lineStyle,
+                    data: dataHS,
+                    symbol: 'none',
+                    itemStyle: {
+                        color: '#d87c7c'
+                    },
+                    areaStyle: {
+                        opacity: 0.1
+                    }
+                    },
+                    {
+                    name: '邢台市',
+                    type: 'radar',
+                    lineStyle: lineStyle,
+                    data: dataXT,
+                    symbol: 'none',
+                    itemStyle: {
+                        color: '#919e8b'
+                    },
+                    areaStyle: {
+                        opacity: 0.05
+                    }
+                    }
+                ]};
+  
+        
+        // 使用刚指定的配置项和数据显示图表。  
+        myChart4.setOption(option4);  
+        var myChart5 = echarts.init(document.getElementById('衡水在校生增长变化'),'vintage');
+
+        option5 = {
+            baseOption: {
+                timeline: {
+                    //loop: false,        
+                    axisType: 'category',
+                    show: true,
+                    autoPlay: true,
+                    playInterval: 3000,
+                    data: ['2016年', '2017年',  '2018年', '2019年']
+                },
+                title: {
+                    text: '衡水市普通中学在校生数增长情况',
+                    // subtext: '2016年',
+                    x: 'center'
+                },
+                grid: { containLabel: true },
+                dataRange: {
+                    min: -30,
+                    max: 30,
+                    x: 'left',
+                    y: 'bottom',
+                    text: ['高', '低'], // 文本，默认为数值文本
+                    calculable: true,
+                    color: [ '#893448','#bf444c','#d87c7c','#eb8146','#B3E5FC','#03A9F4','#0288D1','#303F9F']
+
+                    // color: ['#C40C0C','#C92416','#CB3D20','#CD552A','#CF6D34','#e6b600','#6F79C1','#546EBB','#3963B5','#1E69B0','#005eaa']
+                },
+                toolbox: {
+                    show: true,
+                    orient: 'vertical',
+                    x: 'right',
+                    y: 'center',
+                    feature: {
+                        mark: { show: true },
+                        dataView: { show: true, readOnly: false },
+                        restore: { show: true },
+                        saveAsImage: { show: true }
+                    }
+                },
+                roamController: {
+                    show: true,
+                    x: 'right',
+                    mapTypeControl: {
+                        'yueyang': true
+                    }
+                },
+                series: [
+                    {
+                    name: '地市名称',
+                    type: 'map',
+                    mapType: '衡水', /* // 自定义扩展图表类型 */
+                    roam: false,
+                    label: {
+                        normal: {
+                            show: true,
+                        },
+                        emphasis: {
+                            show: true,
+                        }
+                    },
+                    itemStyle: {
+                        normal: {
+                            borderWidth: 0.2, /* //区域边框宽度 */
+                            borderColor: '#009fe8', /* //区域边框颜色 */
+                            areaColor: "#ffefd5"
+                        },
+                        emphasis: {
+                            areaColor: '#FFFFFF',
+                        }
+                    },
+                    showLegendSymbol: true,
+                    },
+                ],
+                tooltip: {
+                    trigger: 'item'
+                }
+            },
+                options:[
+                //第一组    
+                {
+                    series: [{
+                        title: {
+                    text: '普通中学在校生数增长情况',
+                    subtext: '2016年',
+                    x: 'center'
+                },
+                data: [
+                    { name: '桃城区', value: 9.10 },
+                    { name: '冀州区', value: 15.89 },
+                    { name: '枣强县', value: 9.90 },
+                    { name: '武邑县', value: 4.79 },
+                    { name: '武强县', value: -5.91 },
+                    { name: '饶阳县', value: -0.14 },
+                    { name: '安平县', value: 14.33 },
+                    { name: '故城县', value: 6.81 },
+                    { name: '景县', value: 8.17 },
+                    { name: '阜城县', value: 3.66 },
+                    { name: '深州市', value: 2.90 },
+                ]
+        ,
+            }]
+
+            },
+            //第2组    
+            {
+                    series: [{
+                        title: {
+                    text: '普通中学在校生数增长情况',
+                    subtext: '2017年',
+                    x: 'center'
+                },
+                data:[
+                { "name": "桃城区", "value": 21.98 },
+                { "name": "冀州区", "value": 20.52 },
+                { "name": "枣强县", "value": 10.18 },
+                { "name": "武邑县", "value": 12.35 },
+                { "name": "武强县", "value": -2.59 },
+                { "name": "饶阳县", "value": 3.77 },
+                { "name": "安平县", "value": -0.13 },
+                { "name": "故城县", "value": 6.13 },
+                { "name": "景县", "value": 9.42 },
+                { "name": "阜城县", "value": 8.03 },
+                { "name": "深州市", "value": 5.98 }
+            ]
+            ,
+            }]
+
+            },//第3组    
+                {
+                    series: [{
+                        title: {
+                    text: '普通中学在校生数增长情况',
+                    subtext: '2018年',
+                    x: 'center'
+                },
+                data: [
+        { "name": "桃城区", "value": -30.74 },
+        { "name": "冀州区", "value": 2.87 },
+        { "name": "枣强县", "value": 4.32 },
+        { "name": "武邑县", "value": 14.03 },
+        { "name": "武强县", "value": 1.15 },
+        { "name": "饶阳县", "value": 6.87 },
+        { "name": "安平县", "value": 19.24 },
+        { "name": "故城县", "value": 8.92 },
+        { "name": "景县", "value": 1.91 },
+        { "name": "阜城县", "value": 11.34 },
+        { "name": "深州市", "value": 6.17 }
+        ]
+        ,
+            }]
+
+            },//第4组    
+                {
+                    series: [{
+                        title: {
+                    text: '普通中学在校生数增长情况',
+                    subtext: '2019年',
+                    x: 'center'
+                },
+                data: [
+                { "name": "桃城区", "value": 3.64 },
+                { "name": "冀州区", "value": -10.46 },
+                { "name": "枣强县", "value": 5.64 },
+                { "name": "武邑县", "value": 13.83 },
+                { "name": "武强县", "value": 2.32 },
+                { "name": "饶阳县", "value": 8.27 },
+                { "name": "安平县", "value": 32.11 },
+                { "name": "故城县", "value": 7.25 },
+                { "name": "景县", "value": 11.99 },
+                { "name": "阜城县", "value": 3.05 },
+                { "name": "深州市", "value": 4.84 }
+            ]
+        ,
+            }]
+
+            }
+            ]
+            },
+                
+        myChart5.setOption(option5);
+
+        var myChart6 = echarts.init(document.getElementById('邢台在校生增长变化'),'vintage');
+
+        option6 = {
+            baseOption: {
+                timeline: {
+                    //loop: false,        
+                    axisType: 'category',
+                    show: true,
+                    autoPlay: true,
+                    playInterval: 3000,
+                    data: ['2016年', '2017年',  '2018年', '2019年']
+                },
+                title: {
+                    text: '邢台市普通中学在校生数增长情况',
+                    // subtext: '2016年',
+                    x: 'center'
+                },
+                grid: { containLabel: true },
+                dataRange: {
+                    min: -30,
+                    max: 30,
+                    x: 'right',
+                    y: 'bottom',
+                    text: ['高', '低'], // 文本，默认为数值文本
+                    calculable: true,
+                    color: [ '#893448','#bf444c','#d87c7c','#eb8146','#B3E5FC','#03A9F4','#0288D1','#303F9F']
+
+                    // color: ['#C40C0C','#C92416','#CB3D20','#CD552A','#CF6D34','#e6b600','#6F79C1','#546EBB','#3963B5','#1E69B0','#005eaa']
+                    // color: [ '#919e8b','#f6efa6','#d88273','#eb8146','#d87c7c','#bf444c','#893448']
+
+                },
+                toolbox: {
+                    show: true,
+                    orient: 'vertical',
+                    x: 'right',
+                    y: 'center',
+                    feature: {
+                        mark: { show: true },
+                        dataView: { show: true, readOnly: false },
+                        restore: { show: true },
+                        saveAsImage: { show: true }
+                    }
+                },
+                roamController: {
+                    show: true,
+                    x: 'right',
+                    mapTypeControl: {
+                        'yueyang': true
+                    }
+                },
+                series: [
+                    {
+                    name: '地市名称',
+                    type: 'map',
+                    mapType: '邢台', /* // 自定义扩展图表类型 */
+                    roam: false,
+                    label: {
+                        normal: {
+                            show: true,
+                        },
+                        emphasis: {
+                            show: true,
+                        }
+                    },
+                    itemStyle: {
+                        normal: {
+                            borderWidth: 0.2, /* //区域边框宽度 */
+                            borderColor: '#009fe8', /* //区域边框颜色 */
+                            areaColor: "#ffefd5"
+                        },
+                        emphasis: {
+                            areaColor: '#FFFFFF',
+                        }
+                    },
+                    showLegendSymbol: true,
+                    },
+                ],
+                tooltip: {
+                    trigger: 'item'
+                }
+            },
+                options:[
+                //第一组    
+                {
+                    series: [{
+                        title: {
+                    text: '普通中学在校生数增长情况',
+                    subtext: '2016年',
+                    x: 'center'
+                },
+                data: [   
+    { name: '信都区', value: -0.09 },  
+    { name: '邢台县', value: 0.02 },  
+    { name: '临城县', value: 0.02 },  
+    { name: '内丘县', value: -0.30 },  
+    { name: '柏乡县', value: 0.23 },  
+    { name: '隆尧县', value: -0.12 },  
+    { name: '任泽区', value: 0.06 },  
+    { name: '南和区', value: 0.05 },  
+    { name: '宁晋县', value: 0.04 },  
+    { name: '巨鹿县', value: 0.05 },  
+    { name: '新河县', value: -0.09 },  
+    { name: '广宗县', value: 0.00 },  
+    { name: '平乡县', value: 0.01 },  
+    { name: '威县', value: 0.10 },  
+    { name: '清河县', value: 0.11 },  
+    { name: '临西县', value: 0.04 },  
+    { name: '南宫市', value: 0.04 },  
+    { name: '沙河市', value: 0.01 }  
+]
+,
+            }]
+
+            },
+            //第2组    
+            {
+                    series: [{
+                        title: {
+                    text: '普通中学在校生数增长情况',
+                    subtext: '2017年',
+                    x: 'center'
+                },
+                data:[   
+    { name: '信都区', value: 36.97 },  
+    { name: '邢台县', value: 0.05 },  
+    { name: '临城县', value: 0.10 },  
+    { name: '内丘县', value: 0.63 },  
+    { name: '柏乡县', value: 0.01 },  
+    { name: '隆尧县', value: 0.23 },  
+    { name: '任泽区', value: 0.06 },  
+    { name: '南和区', value: 0.06 },  
+    { name: '宁晋县', value: 0.04 },  
+    { name: '巨鹿县', value: 0.09 },  
+    { name: '新河县', value: 0.08 },  
+    { name: '广宗县', value: 0.01 },  
+    { name: '平乡县', value: -0.03 },  
+    { name: '威县', value: 0.07 },  
+    { name: '清河县', value: 0.09 },  
+    { name: '临西县', value: 0.02 },  
+    { name: '南宫市', value: 0.17 },  
+    { name: '沙河市', value: 0.02 }  
+]
+            ,
+            }]
+
+            },//第3组    
+                {
+                    series: [{
+                        title: {
+                    text: '普通中学在校生数增长情况',
+                    subtext: '2018年',
+                    x: 'center'
+                },
+                data: [  
+    { name: '襄都区', value: 5.85 },  
+    { name: '信都区', value: 0.04 },  
+    { name: '邢台县', value: 0.03 },  
+    { name: '临城县', value: 0.07 },  
+    { name: '内丘县', value: 0.16 },  
+    { name: '柏乡县', value: -0.02 },  
+    { name: '隆尧县', value: 0.11 },  
+    { name: '任泽区', value: -0.30 },  
+    { name: '南和区', value: 0.07 },  
+    { name: '宁晋县', value: 0.16 },  
+    { name: '巨鹿县', value: 0.09 },  
+    { name: '新河县', value: 0.06 },  
+    { name: '广宗县', value: 0.00 },  
+    { name: '平乡县', value: 0.01 },  
+    { name: '威县', value: 0.14 },  
+    { name: '清河县', value: 0.22 },  
+    { name: '临西县', value: 0.33 },  
+    { name: '南宫市', value: 0.12 },  
+    { name: '沙河市', value: -0.02 }  
+]
+,
+            }]
+
+            },//第4组    
+                {
+                    series: [{
+                        title: {
+                    text: '普通中学在校生数增长情况',
+                    subtext: '2019年',
+                    x: 'center'
+                },
+                data: [
+                { "name": "襄都区", "value": 19.44 },
+                { name: '信都区', value: 0.01 },
+                { name: '邢台县', value: 0.02 },
+                { name: '临城县', value: 0.06 },
+                { name: '内丘县', value: -0.09 },
+                { name: '柏乡县', value: -0.02 },
+                { name: '隆尧县', value: 0.07 },
+                { name: '任泽区', value: 0.39 },
+                { name: '南和区', value: 0.06 },
+                { name: '宁晋县', value: 0.12 },
+                { name: '巨鹿县', value: 0.03 },
+                { name: '新河县', value: 0.06 },
+                { name: '广宗县', value: 0.17 },
+                { name: '平乡县', value: -0.01 },
+                { name: '威县', value: 0.08 },
+                { name: '清河县', value: 0.27 },
+                { name: '临西县', value: 0.03 },
+                { name: '南宫市', value: 0.06 },
+                { name: '沙河市', value: -0.02 }
+                ]
+,
+            }]
+
+            }
+            ]
+            },
+        
+        myChart6.setOption(option6);
+
+        var myChart7 = echarts.init(document.getElementById('房价变化'),'vintage');
+        // 指定图表的配置项和数据
+        var option7 = {
+            title: {
+                text: '市区房价变化',
+                x: 'center',
+                top:0
+            },
+            grid: {
+                top:"20%",
+                // left: '3%',
+                // right: '4%',
+                // bottom: '3%',
+                containLabel: true
+            },
+            legend: {top:30},
+            tooltip: {
+                trigger: 'axis',
+                axisPointer: {
+                // Use axis to trigger tooltip
+                type: 'shadow' // 'shadow' as default; can also be 'line' or 'shadow'
+                }
+            },
+            xAxis: {
+                type: 'category',
+                data: [2015,2016,2017,2018,2019,2020]
+            },
+            yAxis: [
+                // {
+                //     type: 'value',
+                //     name: '房价(元/平方)'
+                // },
+                {
+                    type: 'value',
+                    name: '房价（元/平方）'
+                }]
+            ,
+            series: [
+                // {
+            //     name: '衡水市桃城区房价',
+            //     type: 'line',
+            //     stack: 'total',
+            //     yAxisIndex: 0, // 使用第一个纵坐标轴
+            //     data: [4787,4857,7325,8205,8267,7939]
+            // },{
+            //     name: '邢台市邢台县房价',
+            //     type: 'line',
+            //     yAxisIndex: 0, // 使用第一个纵坐标轴
+            //     data: [4683,3596,6508,6853,7479,7557]
+            // },
+            {
+                name: '衡水市房价',
+                type: 'line',
+                stack: 'total',
+                // yAxisIndex: 1, // 使用第一个纵坐标轴
+                lineStyle: {
+                    width: 5 
+                        // type: 'dashed' // 将折线类型设置为虚线
+                    },
+                // label: {
+                //     show: true,     // 显示标签
+                //     position: 'end', // 标签位置为折线末端
+                //     formatter: '{a}', // 标签内容为折线的名称
+                // },
+                data: [4787,4857,7325,8205,8267,7939]
+            },{
+                name: '邢台市房价',
+                type: 'line',
+                lineStyle: {
+                    width: 5 
+                        // type: 'dashed' // 将折线类型设置为虚线
+                    },
+                // yAxisIndex: 1, // 使用第一个纵坐标轴
+                data: [4683,3596,6508,6853,7479,7557]
+            },{
+                name: '石家庄市房价',
+                type: 'line',
+                lineStyle: {
+                        opacity: 0.3,
+                        // color:'#919e8b',
+                        type: 'dashed' // 将折线类型设置为虚线
+                    },
+                // yAxisIndex: 1, // 使用第一个纵坐标轴
+                data: [8901 	,11009 ,	18160 ,	16744 ,	15849 	,15730 ]
+            },{
+                name: '唐山市房价',
+                type: 'line',
+                lineStyle: {
+                    opacity: 0.3,
+                        // color:'#919e8b',
+                        type: 'dashed' // 将折线类型设置为虚线
+                    },
+                // yAxisIndex: 1, // 使用第一个纵坐标轴
+                data: [6786 ,	6962 	,8807 	,10193, 	12946 ,	14872  ]},{
+                name: '秦皇岛市房价',
+                type: 'line',
+                lineStyle: {opacity: 0.3,
+                        // color:'#919e8b',
+                        type: 'dashed' // 将折线类型设置为虚线
+                    },
+                // yAxisIndex: 1, // 使用第一个纵坐标轴
+                data: [6538 ,6564 ,7983 ,9322 ,10547 ,11381  ]
+            },{
+                name: '邯郸市房价',
+                type: 'line',
+                lineStyle: {opacity: 0.3,
+                        // color:'#919e8b',
+                        type: 'dashed' // 将折线类型设置为虚线
+                    },
+                // yAxisIndex: 1, // 使用第一个纵坐标轴
+                data: [6154 ,6367 ,7715 ,9464 ,9454 ,9616  ]
+            },{
+                name: '保定市房价',
+                type: 'line',
+                lineStyle: {opacity: 0.3,
+                        // color:'#919e8b',
+                        type: 'dashed' // 将折线类型设置为虚线
+                    },
+                // yAxisIndex: 1, // 使用第一个纵坐标轴
+                data: [7391 ,9365 ,14300 ,12677 ,12094 ,11306  ]
+            },{
+                name: '张家口市房价',
+                type: 'line',
+                lineStyle: {opacity: 0.3,
+                        // color:'#919e8b',
+                        type: 'dashed' // 将折线类型设置为虚线
+                    },
+                // yAxisIndex: 1, // 使用第一个纵坐标轴
+                data: [5607 ,6712 ,11084 ,10660 ,9408 ,8743  ]
+            },{
+                name: '承德市房价',
+                type: 'line',
+                lineStyle: {opacity: 0.3,
+                        // color:'#919e8b',
+                        type: 'dashed' // 将折线类型设置为虚线
+                    },
+                // yAxisIndex: 1, // 使用第一个纵坐标轴
+                data: [6474 ,6697 ,9482 ,10985 ,11209 ,10763  ]
+            },{
+                name: '沧州市房价',
+                type: 'line',
+                lineStyle: {opacity: 0.3,
+                        // color:'#919e8b',
+                        type: 'dashed' // 将折线类型设置为虚线
+                    },
+                // yAxisIndex: 1, // 使用第一个纵坐标轴
+                data: [6045 ,6850 ,12956 ,12248 ,13665 ,13540  ]
+            },{
+                name: '廊坊市房价',
+                type: 'line',
+                lineStyle: {opacity: 0.3,
+                        // color:'#919e8b',
+                        type: 'dashed' // 将折线类型设置为虚线
+                    },
+                // yAxisIndex: 1, // 使用第一个纵坐标轴
+                data: [6657 ,11081 ,19232 ,15529 ,14712 ,13660  ]
+            }
+        ]
+        };
+        // 使用刚指定的配置项和数据显示图表
+        myChart7.setOption(option7);
+    </script>
+    
+</body>
+</html>
